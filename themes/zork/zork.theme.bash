@@ -23,27 +23,27 @@ PS3=">> "
 
 __my_rvm_ruby_version() {
     local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
-  [ "$gemset" != "" ] && gemset="@$gemset"
+    [ "$gemset" != "" ] && gemset="@$gemset"
     local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
     local full="$version$gemset"
-  [ "$full" != "" ] && echo "${bold_yellow}[${normal}$full${bold_yellow}]${normal}"
+    [ "$full" != "" ] && echo "${bold_yellow}[${normal}$full${bold_yellow}]${normal}"
 }
 
 is_vim_shell() {
-        if [ ! -z "$VIMRUNTIME" ]
-        then
-                echo "${bold_yellow}[${normal}${cyan}vim shell${normal}${bold_yellow}]${normal}"
-        fi
+    if [ ! -z "$VIMRUNTIME" ]
+    then
+            echo "${bold_yellow}[${normal}${cyan}vim shell${normal}${bold_yellow}]${normal}"
+    fi
 }
 
 modern_scm_prompt() {
-        CHAR=$(scm_char)
-        if [ $CHAR = $SCM_NONE_CHAR ]
-        then
-                return
-        else
-                echo "$(scm_char)${bold_yellow}[${normal}${bold_purple}$(scm_prompt_info)${normal}${bold_yellow}]${normal}"
-        fi
+    CHAR=$(scm_char)
+    if [ $CHAR = $SCM_NONE_CHAR ]
+    then
+            return
+    else
+        echo "$(scm_char)${bold_yellow}[${normal}${bold_purple}$(scm_prompt_info)${normal}${bold_yellow}]${normal}"
+    fi
 }
 
 # show chroot if exist

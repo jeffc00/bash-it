@@ -26,13 +26,13 @@ __my_rvm_ruby_version() {
   [ "$gemset" != "" ] && gemset="@$gemset"
     local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
     local full="$version$gemset"
-  [ "$full" != "" ] && echo "[$full]"
+  [ "$full" != "" ] && echo "${bold_yellow}[${normal}$full${bold_yellow}]${normal}"
 }
 
 is_vim_shell() {
         if [ ! -z "$VIMRUNTIME" ]
         then
-                echo "[${cyan}vim shell${normal}]"
+                echo "${bold_yellow}[${normal}${cyan}vim shell${normal}${bold_yellow}]${normal}"
         fi
 }
 
@@ -42,7 +42,7 @@ modern_scm_prompt() {
         then
                 return
         else
-                echo "[${bold_purple}$(scm_char)${normal} ${bold_purple}$(scm_prompt_info)${normal}]"
+                echo "$(scm_char)${bold_yellow}[${normal}${bold_purple}$(scm_prompt_info)${normal}${bold_yellow}]${normal}"
         fi
 }
 
@@ -51,7 +51,7 @@ chroot(){
     if [ -n "$debian_chroot" ]
     then 
         my_ps_chroot="${bold_cyan}$debian_chroot${normal}";
-        echo "($my_ps_chroot)";
+        echo "${bold_yellow}(${normal}$my_ps_chroot${bold_yellow})${normal}";
     fi
     }
 
@@ -61,11 +61,11 @@ my_ve(){
     if [ -n "$CONDA_DEFAULT_ENV" ]
     then
         my_ps_ve="${bold_purple}${CONDA_DEFAULT_ENV}${normal}";
-        echo "($my_ps_ve)";
+        echo "${bold_yellow}(${normal}$my_ps_ve${bold_yellow})${normal}";
     elif [ -n "$VIRTUAL_ENV" ]
     then 
         my_ps_ve="${bold_purple}$ve${normal}";
-        echo "($my_ps_ve)";
+        echo "${bold_yellow}(${normal}$my_ps_ve${bold_yellow})${normal}";
     fi
     echo "";
     }
@@ -86,16 +86,16 @@ prompt() {
 
     # nice prompt
     case "`id -u`" in
-        0) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_root${bold_cyan}@${normal}$my_ps_host_root]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
-└─${bold_green}$ ${normal} "
+        0) PS1="${TITLEBAR}${bold_yellow}┌─${normal}$(my_ve)$(chroot)${bold_yellow}[${normal}$my_ps_root${bold_cyan}@${normal}$my_ps_host_root${bold_yellow}]${normal}$(modern_scm_prompt)$(__my_rvm_ruby_version)${bold_yellow}[${normal}${cyan}\w${normal}${bold_yellow}]${normal}$(is_vim_shell)
+${bold_yellow}└─${normal}${bold_green}$ ${normal}"
         ;;
-        *) PS1="${TITLEBAR}┌─$(my_ve)$(chroot)[$my_ps_user${bold_cyan}@${normal}$my_ps_host]$(modern_scm_prompt)$(__my_rvm_ruby_version)[${cyan}\w${normal}]$(is_vim_shell)
-└─${bold_green}$ ${normal}"
+        *) PS1="${TITLEBAR}${bold_yellow}┌─${normal}$(my_ve)$(chroot)${bold_yellow}[${normal}$my_ps_user${bold_cyan}@${normal}$my_ps_host${bold_yellow}]${normal}$(modern_scm_prompt)$(__my_rvm_ruby_version)${bold_yellow}[${normal}${cyan}\w${normal}${bold_yellow}]${normal}$(is_vim_shell)
+${bold_yellow}└─${normal}${bold_green}$ ${normal}"
         ;;
     esac
 }
 
-PS2="└─${bold_green}$ ${normal}"
+PS2="${bold_yellow}└─${normal}${bold_green}$ ${normal}"
 
 
 

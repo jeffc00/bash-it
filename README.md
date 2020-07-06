@@ -1,6 +1,7 @@
 # Bash-it
 
-[![Build Status](https://travis-ci.org/Bash-it/bash-it.svg?branch=master)](https://travis-ci.org/Bash-it/bash-it) [![Join the chat at https://gitter.im/Bash-it/bash-it](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Bash-it/bash-it?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.com/Bash-it/bash-it.svg?branch=master)](https://travis-ci.com/Bash-it/bash-it)
+[![Join the chat at https://gitter.im/Bash-it/bash-it](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Bash-it/bash-it?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **Bash-it** is a collection of community Bash commands and scripts for Bash 3.2+.
 (And a shameless ripoff of [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) :smiley:)
@@ -394,6 +395,13 @@ $ git config --global --add bash-it.hide-status 1
 
 Setting this flag globally has the same effect as `SCM_CHECK=true`, but only for Git repos.
 
+### Speed up git status calculations
+
+As an alternative to ignoring repo status entirely, you can try out the `gitstatus` plugin.
+This plugin speeds up all `git status` calculations by up to 10x times!
+
+**NOTE**: You will need to clone `gitstatus` repo from [here](https://github.com/romkatv/gitstatus).
+
 ### Pass function renamed to passgen
 
 The Bash-it `pass` function has been renamed to `passgen` in order to avoid a naming conflict with the [pass password manager](https://www.passwordstore.org/).
@@ -408,6 +416,20 @@ Set `BASH_IT_LEGACY_PASS` to 'true' to force Bash-it to always **create** the `p
 Unset `BASH_IT_LEGACY_PASS` to have Bash-it **return to default behavior**:
 
 * `unset BASH_IT_LEGACY_PASS`
+
+### Debugging
+
+If you encounter problems with any part of Bash-it, run the following command:
+```bash
+bash-it doctor
+```
+This will reload your bash profile and print out logs of various parts in Bash-it.
+Note that this command at default will print all logs, including debug logs.
+You can call it like this:
+```bash
+bash-it doctor [errors/warnings/all]
+```
+In order to get wanted verbosity.
 
 ### Proxy Support
 
